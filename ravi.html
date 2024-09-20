@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with Banner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, black);
+            animation: rainbowBackground 15s infinite;
+            background-size: 400% 400%;
+            padding: 20px 0;
+        }
+        @keyframes rainbowBackground {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .banner {
+            background-image: url('C:/Users/ravit/OneDrive/Pictures/Screenshots/Screenshot 2024-07-04 093928.png');
+            background-size: cover;
+            background-position: center;
+            height: 100vh; /* Full viewport height */
+            color: white;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+            z-index: 1;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .banner h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+        .banner p {
+            font-size: 1.5em;
+            margin: 20px 0 0;
+        }
+        .about-me, .skills, .certificates, .social-media, .contact-me {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 60%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .about-me h2, .skills h2, .certificates h2, .social-media h2, .contact-me h2 {
+            text-align: center;
+            color: #333;
+        }
+        .about-me p, .skills p, .certificates .cert-grid, .contact-details, .social-media ul {
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: center;
+            color: #666;
+        }
+        .certificates .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+            margin-top: 20px;
+        }
+        .certificates img {
+            max-width: 100%;
+            height: auto;
+        }
+        .social-media ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        .social-media li {
+            margin: 10px 0;
+            font-size: 1.1em;
+            animation: fadeInLeft 1s ease-in-out;
+        }
+        .social-media a {
+            text-decoration: none;
+            color: #0073b1;
+            transition: color 0.3s;
+            animation: rainbowText 3s infinite;
+        }
+        .social-media a:hover {
+            text-decoration: underline;
+            color: #005f8d;
+        }
+        .social-media i {
+            margin-right: 8px;
+        }
+        .contact-details li {
+            margin: 10px 0;
+            animation: fadeInRight 1s ease-in-out;
+        }
+        .contact-details a {
+            text-decoration: none;
+            color: #0073b1;
+            transition: color 0.3s;
+        }
+        .contact-details a:hover {
+            text-decoration: underline;
+            color: #005f8d;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #f2f2f2;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes rainbowText {
+            0%, 100% {color: red;}
+            16% {color: orange;}
+            33% {color: yellow;}
+            50% {color: green;}
+            66% {color: blue;}
+            83% {color: indigo;}
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#social">Social Media</a>
+        <a href="#contact">Contact Me</a>
+    </div>
+    <div class="banner" id="home">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1>Hi, I'm RAVI TEJA CHIRAKALA. Let's Connect and Create!</h1>
+            <p>Empowering the Future Through Technology</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="about-me" id="about">
+            <h2>About Me</h2>
+            <p>"I am Ravi Teja Chirakala. I completed my undergraduate course at Vignan Science and Technology Research University.
+ Additionally, I completed my 10+2 education at Bhashyam Schools and Narayana Junior College. 
+My hobbies include coding, browsing, playing volleyball, cricket, and BGMI."</p>
+        </div>
+        <div class="skills" id="skills">
+            <h2>Skills I Have</h2>
+            <p>
+                <strong>Skills:</strong><br>
+                C Language<br>
+                Python Programming<br>
+                Data Structures and Algorithms
+            </p>
+            <p>
+                <strong>Basics:</strong><br>
+                Java<br>
+                Cybersecurity Skills<br>
+                PowerPoint and Power BI
+            </p>
+        </div>
+        <div class="certificates" id="certificates">
+            <h2>Certificates</h2>
+            <div class="cert-grid">
+                <img src="C:/Users/ravit/OneDrive/Pictures/Screenshots/Screenshot 2024-07-04 101754.png" alt="Certificate 1">
+                <img src="C:/Users/ravit/OneDrive/Pictures/Screenshots/Screenshot 2024-07-04 101828.png" alt="Certificate 2">
+            </div>
+        </div>
+        <div class="social-media" id="social">
+            <h2>Social Media Accounts</h2>
+            <ul>
+                <li><a href="https://github.com/raviteja12333" target="_blank"><i class="fab fa-github"></i>GitHub</a></li>
+                <li><a href="www.linkedin.com/in/raviteja-chirakala" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a></li>
+                <li><a href="https://www.instagram.com/rishi._rishi.__" target="_blank"><i class="fab fa-instagram"></i>Instagram</a></li>
+            </ul>
+        </div>
+        <div class="contact-me" id="contact">
+            <h2>Contact Me</h2>
+            <ul class="contact-details">
+                <li><a href="mailto:ravitejachirakala@gmail.com"><i class="fas fa-envelope"></i> Email: ravitejachirakala@gmail.com.com</a></li>
+                <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> Phone: +1234567890</a></li>
+                <li><i class="fas fa-map-marker-alt"></i> Address: manyam (dhulipudi south),bapatla(dis),andhra pradesh, india</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Ravi Teja Chirakala. All rights reserved.</p>
+    </div>
+</body>
+</html>
