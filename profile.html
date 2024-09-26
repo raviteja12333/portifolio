@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store with Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .product {
+            display: inline-block;
+            width: 30%;
+            border: 1px solid #ccc;
+            margin: 1%;
+            padding: 1%;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: center;
+        }
+        .product img {
+            width: 100px;
+            height: 100px;
+        }
+        .cart {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #333;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .cart-item button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .cart-item input {
+            width: 30px;
+            text-align: center;
+        }
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Grocery Store</h1>
+
+    <!-- Products Section -->
+    <div id="products">
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Apple">
+            <h3>Apple</h3>
+            <p>$1.00</p>
+            <button onclick="addToCart('Apple', 1)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Banana">
+            <h3>Banana</h3>
+            <p>$0.50</p>
+            <button onclick="addToCart('Banana', 0.5)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/100" alt="Orange">
+            <h3>Orange</h3>
+            <p>$0.80</p>
+            <button onclick="addToCart('Orange', 0.8)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <h2>Your Cart</h2>
+    <div id="cart" class="cart">
+        <p>Your cart is empty.</p>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+
+    // Add to cart function
+    function addToCart(product, price) {
+        let existingProduct = cart.find(item => item.product === product);
+        
+        if (existingProduct) {
+            existingProduct.quantity += 1;
+        } else {
+            cart.push({ product, price, quantity: 1 });
+        }
+
+        renderCart();
+    }
+
+    // Update quantity of product
+    function updateQuantity(product, newQuantity) {
+        let productItem = cart.find(item => item.product === product);
+        
+        if (productItem) {
+            if (newQuantity <= 0) {
+                removeFromCart(product);
+            } else {
+                productItem.quantity = newQuantity;
+            }
+        }
+
+        renderCart();
+    }
+
+    // Remove from cart function
+    function removeFromCart(product) {
+        cart = cart.filter(item => item.product !== product);
+        renderCart();
+    }
+
+    // Render cart content
+    function renderCart() {
+        const cartDiv = document.getElementById('cart');
+        cartDiv.innerHTML = '';
+
+        if (cart.length === 0) {
+            cartDiv.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                cartDiv.innerHTML += `
+                    <div class="cart-item">
+                        <span><b>${item.product}</b> - $${item.price.toFixed(2)}</span>
+                        <span>
+                            <button onclick="updateQuantity('${item.product}', ${item.quantity - 1})">-</button>
+                            <input type="text" value="${item.quantity}" readonly>
+                            <button onclick="updateQuantity('${item.product}', ${item.quantity + 1})">+</button>
+                            <button onclick="removeFromCart('${item.product}')">Remove</button>
+                        </span>
+                    </div>`;
+            });
+            cartDiv.innerHTML += `<div class="total">Total: $${total.toFixed(2)}</div>`;
+        }
+    }
+</script>
+
+</body>
+</html>
